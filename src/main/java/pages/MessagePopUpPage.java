@@ -14,6 +14,10 @@ public class MessagePopUpPage extends BasePage{
         wait.until(ExpectedConditions.visibilityOfElementLocated
                 (By.xpath("//div[contains(@class, 'v-snack__wrapper')]")));
     }
+    public void waitForPopUpToBePresent() {
+        wait.until(ExpectedConditions.presenceOfElementLocated
+                (By.xpath("//div[contains(@class, 'v-snack__wrapper')]/div")));
+    }
     public WebElement getErrorMessage() {
         return driver.findElement(By.xpath("//div[contains(@class, 'v-snack__wrapper')]/div/ul/li"));
     }
