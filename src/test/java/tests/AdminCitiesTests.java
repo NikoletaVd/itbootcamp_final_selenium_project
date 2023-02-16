@@ -54,6 +54,7 @@ public class AdminCitiesTests extends BasicTest {
         citiesPage.getNewItemInput().sendKeys(Keys.BACK_SPACE);
         citiesPage.getNewItemInput().sendKeys("Nikoleta Vdovenko's city edited");
         citiesPage.getSaveButton().click();
+        messagePopUpPage.waitForPopUpToBePresent();
         Assert.assertTrue(messagePopUpPage.getConfirmationMessage().getText().contains("Saved successfully"),
                 "Message does not match.");
     }
@@ -65,8 +66,7 @@ public class AdminCitiesTests extends BasicTest {
         citiesPage.getSearchInput().sendKeys("Nikoleta Vdovenko's city edited");
         citiesPage.waitForRowsToBePresent(1);
         Assert.assertTrue(citiesPage.getCellFromTheRow(2, 1).getText().
-                        contains("Nikoleta Vdovenko's city edited"),
-                "Text does not match.");
+                        contains("Nikoleta Vdovenko's city edited"), "Text does not match.");
     }
     @Test (priority = 60)
     @Description ("Test #5: Delete city")
@@ -76,11 +76,11 @@ public class AdminCitiesTests extends BasicTest {
         citiesPage.getSearchInput().sendKeys("Nikoleta Vdovenko's city edited");
         citiesPage.waitForRowsToBePresent(1);
         Assert.assertTrue(citiesPage.getCellFromTheRow(2, 1).getText().
-                        contains("Nikoleta Vdovenko's city edited") ,
-                "Text does not match.");
+                        contains("Nikoleta Vdovenko's city edited") , "Text does not match.");
         citiesPage.getDeleteButtonFromTheRow(1).click();
         citiesPage.waitForDialogForDeleteToBeVisible();
         citiesPage.getDeleteButton().click();
+        messagePopUpPage.waitForPopUpToBePresent();
         Assert.assertTrue(messagePopUpPage.getConfirmationMessage().getText().contains("Deleted successfully"),
                 "Message does not match");
     }
